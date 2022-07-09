@@ -81,6 +81,12 @@ section {
     font-size: 16px;
     color: rgb(40, 40, 40);
     letter-spacing: 2px;
+    transition: linear 0.2s;
+}
+
+.nav-links a:hover {
+    color: rgb(203, 0, 0);
+    transition: linear 0.2s;
 }
 
 .nav-btns a {
@@ -147,6 +153,11 @@ section {
     transition: linear 0.2s;
 }
 
+.setButtonSort {
+    color: rgb(203, 0, 0);
+    transition: linear 0.2s;
+}
+
 .content-btns > div:hover {
     color: rgb(203, 0, 0);
     transition: linear 0.2s;
@@ -198,7 +209,6 @@ section {
 
 .element img {
     width: 180px;
-    /* height: 150px; */
     background-color: azure;
 }
 
@@ -296,6 +306,10 @@ section {
     font-size: 16px;
     color: rgb(40, 40, 40);
     cursor: pointer;
+}
+
+.clear:hover {
+    color: rgb(203, 0, 0);
 }
 
 .checkbox-block {

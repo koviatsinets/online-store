@@ -5,7 +5,7 @@ import './global.css';
 
 const productsArr = [
     {
-        "name": "Macbook Air M1 13\" 8Gb 256Gb 2020",
+        "name": "Macbook Air M1 13\" 8Gb 256Gb",
         "brand": "Apple",
         "display": "13",
         "ram": "8",
@@ -16,7 +16,7 @@ const productsArr = [
         "img": "./assets/images/macbook-air-8-256.webp"
     },
     {
-        "name": "Macbook Pro M1 13\" 16Gb 256Gb 2020",
+        "name": "Macbook Pro M1 13\" 16Gb 256Gb",
         "brand": "Apple",
         "display": "13",
         "ram": "16",
@@ -27,7 +27,7 @@ const productsArr = [
         "img": "./assets/images/macbook-pro-16-256.webp"
     },
     {
-        "name": "Macbook Pro M1 16\" 16Gb 512Gb 2020",
+        "name": "Macbook Pro M1 16\" 16Gb 512Gb",
         "brand": "Apple",
         "display": "16",
         "ram": "16",
@@ -38,7 +38,7 @@ const productsArr = [
         "img": "./assets/images/macbook-pro-16-512.webp"
     },
     {
-        "name": "Macbook Pro M2 14\" 16Gb 1Tb 2022",
+        "name": "Macbook Pro M2 14\" 16Gb 1Tb",
         "brand": "Apple",
         "display": "14",
         "ram": "16",
@@ -49,7 +49,7 @@ const productsArr = [
         "img": "./assets/images/macbook-pro-14-1024.webp"
     },
     {
-        "name": "HP Victus 16\" 16Gb 512Gb 2021",
+        "name": "HP Victus 16\" 16Gb 512Gb",
         "brand": "HP",
         "display": "16",
         "ram": "16",
@@ -60,7 +60,7 @@ const productsArr = [
         "img": "./assets/images/hp-victus-16-512.jpeg"
     },
     {
-        "name": "HP Pavilion 15\" 8Gb 512Gb 2021",
+        "name": "HP Pavilion 15\" 8Gb 512Gb",
         "brand": "HP",
         "display": "15",
         "ram": "8",
@@ -226,7 +226,15 @@ const productsArr = [
     }
   ]
 
-  let contentProducts = document.querySelector('.content-products');
+let contentProducts = document.querySelector('.content-products');
+let checkBoxList = document.querySelectorAll('input[type=checkbox]');
+
+for (let el of checkBoxList) {
+    el.addEventListener('click', filterArrProducts);
+}
+
+let newArrProductsResult = [];
+filterArrProducts();
 
 // ------------------ Слайд-меню ------------------ //
 
@@ -266,15 +274,6 @@ function openColor() {
 
 // ------------------ Фильтрация ------------------ //
 
-let checkBoxList = document.querySelectorAll('input[type=checkbox]');
-
-for (let el of checkBoxList) {
-    el.addEventListener('click', filterArrProducts);
-}
-
-let newArrProductsResult = [];
-filterArrProducts();
-
 function filterArrProducts() {
 
     let newArrProductsBrand = [];
@@ -283,7 +282,6 @@ function filterArrProducts() {
     let newArrProductsStorage = [];
     let newArrProductsColor = [];
     
-
     productsArr.forEach(el => {
         if (checkBoxList[0].checked || checkBoxList[1].checked || checkBoxList[2].checked || checkBoxList[3].checked || checkBoxList[4].checked) {
             if (el.brand === "Apple" && checkBoxList[0].checked) {
@@ -366,24 +364,59 @@ function filterArrProducts() {
         }
     newArrProductsResult = newArrProductsColor;
     });
-    console.log(newArrProductsResult);
     renderProducts();
 }
 
 // ------------------ Рендер списка продуктов ------------------ //
 
-renderProducts();
-
 function renderProducts() {
-    console.log('рендерю!')
     contentProducts.innerHTML = '';
     newArrProductsResult.forEach(el => {
         let tempDiv = document.createElement('div');
         tempDiv.classList.add('element');
-        tempDiv.innerHTML = `<img src="${el.img}" alt=""><p>${el.name}</p>`
+        tempDiv.innerHTML = `<img src="${el.img}" alt=""><p>${el.name}</p><p>${el.year}</p>`
         contentProducts.appendChild(tempDiv);
     });
 }
 
+// ------------------ Кнопка "очистить" ------------------ //
 
+let clearButton = document.querySelector('.clear');
+clearButton.addEventListener('click', clearCheckbox);
 
+function clearCheckbox() {
+    checkBoxList.forEach(el => {
+        el.checked = false;
+    });
+    filterArrProducts();
+}
+
+// ------------------ Сортировка ------------------ //
+
+let buttonSortAZ = document.querySelector('.button-sort-az');
+let buttonSortZA = document.querySelector('.button-sort-za');
+let buttonSortYearUp = document.querySelector('.button-sort-year-up');
+let buttonSortYearDown = document.querySelector('.button-sort-year-down');
+
+const buttonSortArr = [buttonSortAZ, buttonSortZA, buttonSortYearUp, buttonSortYearDown];
+buttonSortArr.forEach(el => {el.addEventListener('click', compareProducts)})
+
+function compareProducts(EO) {
+    EO=EO||window.event;
+    buttonSortArr.forEach(el => {el.classList.remove('setButtonSort')})
+    if (EO.currentTarget.classList.value === "button-sort-az") {
+        newArrProductsResult.sort((a,b) => a.name.localeCompare(b.name))
+    }
+    if (EO.currentTarget.classList.value === "button-sort-za") {
+        newArrProductsResult.sort((a,b) => b.name.localeCompare(a.name))
+    }
+    if (EO.currentTarget.classList.value === "button-sort-year-up") {
+        newArrProductsResult.sort((a,b) => a.year.localeCompare(b.year))
+    }
+    if (EO.currentTarget.classList.value === "button-sort-year-down") {
+        newArrProductsResult.sort((a,b) => b.year.localeCompare(a.year))
+    }
+    filterArrProducts();
+    EO.currentTarget.classList.add('setButtonSort');
+
+}
