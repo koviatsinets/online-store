@@ -203,6 +203,17 @@ const productsArr = [
         "img": "./assets/images/dell-latitude-16-512.jpg"
     },
     {
+        "name": "Dell Vostro 13\" 8Gb 256gb",
+        "brand": "Dell",
+        "display": "13",
+        "ram": "8",
+        "storage": "256",
+        "color": "silver",
+        "price": "750",
+        "year": "2020",
+        "img": "./assets/images/dell-vostro-8-256.jpg"
+    },
+    {
         "name": "Dell XPS 14\" 8Gb 512Gb",
         "brand": "Dell",
         "display": "14",
@@ -214,16 +225,16 @@ const productsArr = [
         "img": "./assets/images/dell-latitude-16-512.jpg"
     },
     {
-        "name": "Dell Vostro 13\" 8Gb 256gb",
+        "name": "Dell Vostro 13\" 8Gb 512gb",
         "brand": "Dell",
         "display": "13",
         "ram": "8",
-        "storage": "256",
+        "storage": "512",
         "color": "silver",
-        "price": "950",
+        "price": "850",
         "year": "2020",
         "img": "./assets/images/dell-vostro-8-256.jpg"
-    }
+    },
   ]
 
 let contentProducts = document.querySelector('.content-products');
@@ -374,7 +385,7 @@ function renderProducts() {
     newArrProductsResult.forEach(el => {
         let tempDiv = document.createElement('div');
         tempDiv.classList.add('element');
-        tempDiv.innerHTML = `<img src="${el.img}" alt=""><p>${el.name}</p><p>${el.year}</p>`
+        tempDiv.innerHTML = `<img src="${el.img}" alt=""><p>${el.name}</p><div class="product-block-group"><div class="product-block"><p>year: ${el.year}</p><p>color: ${el.color}</p></div><span class="material-symbols-outlined add-cart">shopping_cart_checkout</span></div>`
         contentProducts.appendChild(tempDiv);
     });
 }
@@ -418,5 +429,36 @@ function compareProducts(EO) {
     }
     filterArrProducts();
     EO.currentTarget.classList.add('setButtonSort');
+}
 
+// ------------------ Добавление и удаление из корзины ------------------ //
+
+let addToBusketArr = document.querySelectorAll('.add-cart');
+addToBusketArr.forEach(el => {
+    el.addEventListener('click', addToBusket);
+})
+let busketCompleteArr = [];
+
+function addToBusket(EO) {
+    if (EO.target.classList.contains('add-complete') === false) {
+        EO.target.innerHTML = 'add_shopping_cart';
+        EO.target.classList.add('add-complete');
+        productsArr.forEach(el => {
+            if (busketCompleteArr.length < 21) {
+                if (el.name === EO.target.parentNode.previousSibling.innerText) {
+                    busketCompleteArr.push(el);
+                }
+            } else {
+                console.log('Извините, все слоты заполнены');
+            }
+        });
+    } else {
+        EO.target.classList.remove('add-complete');
+        busketCompleteArr.forEach((el,i) => {
+            if (el.name === EO.target.parentNode.previousSibling.innerText) {
+                busketCompleteArr.splice(i,i+1);
+            }
+        });
+    };
+    console.log(busketCompleteArr);
 }
