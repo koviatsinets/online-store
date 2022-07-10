@@ -239,13 +239,18 @@ const productsArr = [
 
 let contentProducts = document.querySelector('.content-products');
 let checkBoxList = document.querySelectorAll('input[type=checkbox]');
+let cartNumber = document.querySelector('.cart-number');
+
 
 for (let el of checkBoxList) {
     el.addEventListener('click', filterArrProducts);
 }
 
 let newArrProductsResult = [];
+
 filterArrProducts();
+
+
 
 // ------------------ Слайд-меню ------------------ //
 
@@ -376,6 +381,9 @@ function filterArrProducts() {
     newArrProductsResult = newArrProductsColor;
     });
     renderProducts();
+    if (newArrProductsResult.length === 0) {
+        openModal('')
+    }
 }
 
 // ------------------ Рендер списка продуктов ------------------ //
@@ -441,24 +449,48 @@ let busketCompleteArr = [];
 
 function addToBusket(EO) {
     if (EO.target.classList.contains('add-complete') === false) {
-        EO.target.innerHTML = 'add_shopping_cart';
-        EO.target.classList.add('add-complete');
-        productsArr.forEach(el => {
-            if (busketCompleteArr.length < 21) {
-                if (el.name === EO.target.parentNode.previousSibling.innerText) {
-                    busketCompleteArr.push(el);
-                }
-            } else {
-                console.log('Извините, все слоты заполнены');
-            }
-        });
+        if (busketCompleteArr.length < 20) {
+            EO.target.innerHTML = 'add_shopping_cart';
+            EO.target.classList.add('add-complete');
+            productsArr.forEach(el => {
+                
+                    if (el.name === EO.target.parentNode.previousSibling.innerText) {
+                        busketCompleteArr.push(el);
+                    }
+                
+            });
+        } else {
+            console.log('>20')
+            openModal('Извините все слоты заполнены');
+        }
     } else {
         EO.target.classList.remove('add-complete');
         busketCompleteArr.forEach((el,i) => {
             if (el.name === EO.target.parentNode.previousSibling.innerText) {
-                busketCompleteArr.splice(i,i+1);
+                busketCompleteArr.splice(i,1);
+                EO.target.innerHTML = 'shopping_cart_checkout';
             }
         });
     };
+    cartNumber.innerHTML = busketCompleteArr.length;
     console.log(busketCompleteArr);
+}
+
+// ------------------ Модальное окно ------------------ //
+
+let buttonModalClose = document.querySelector('.button-modal-close');
+let modalWindow = document.querySelector('.fog');
+
+buttonModalClose.addEventListener('click', closeModal);
+
+function openModal(txt) {
+    modalWindow.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    console.log(modalWindow.childNodes[1].childNodes[1].innerText = txt)
+    buttonModalClose.focus();
+}
+
+function closeModal() {
+    modalWindow.style.display = 'none';
+    document.body.style.overflow = 'auto';
 }
