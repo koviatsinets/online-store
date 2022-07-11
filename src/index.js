@@ -13,7 +13,8 @@ const productsArr = [
         "color": "grey",
         "price": "999",
         "year": "2020",
-        "img": "./assets/images/macbook-air-8-256.webp"
+        "amount": "5",
+        "img": "./assets/images/macbook-air-8-256.jpeg"
     },
     {
         "name": "Macbook Pro M1 13\" 16Gb 256Gb",
@@ -24,7 +25,8 @@ const productsArr = [
         "color": "silver",
         "price": "1299",
         "year": "2020",
-        "img": "./assets/images/macbook-pro-16-256.webp"
+        "amount": "4",
+        "img": "./assets/images/macbook-pro-16-256.png"
     },
     {
         "name": "Macbook Pro M1 16\" 16Gb 512Gb",
@@ -35,7 +37,8 @@ const productsArr = [
         "color": "grey",
         "price": "1999",
         "year": "2020",
-        "img": "./assets/images/macbook-pro-16-512.webp"
+        "amount": "2",
+        "img": "./assets/images/macbook-pro-16-512.jpeg"
     },
     {
         "name": "Macbook Pro M2 14\" 16Gb 1Tb",
@@ -46,7 +49,8 @@ const productsArr = [
         "color": "silver",
         "price": "1799",
         "year": "2022",
-        "img": "./assets/images/macbook-pro-14-1024.webp"
+        "amount": "9",
+        "img": "./assets/images/macbook-pro-14-1024.png"
     },
     {
         "name": "HP Victus 16\" 16Gb 512Gb",
@@ -57,6 +61,7 @@ const productsArr = [
         "color": "black",
         "price": "1050",
         "year": "2021",
+        "amount": "11",
         "img": "./assets/images/hp-victus-16-512.jpeg"
     },
     {
@@ -68,6 +73,7 @@ const productsArr = [
         "color": "black",
         "price": "1350",
         "year": "2021",
+        "amount": "10",
         "img": "./assets/images/hp-pavilion-8-512.jpeg"
     },
     {
@@ -79,6 +85,7 @@ const productsArr = [
         "color": "silver",
         "price": "1090",
         "year": "2021",
+        "amount": "15",
         "img": "./assets/images/hp-probook-16-256.jpg"
     },
     {
@@ -90,6 +97,7 @@ const productsArr = [
         "color": "silver",
         "price": "1700",
         "year": "2022",
+        "amount": "2",
         "img": "./assets/images/hp-elitebook-16-512.jpg"
     },
     {
@@ -101,6 +109,7 @@ const productsArr = [
         "color": "black",
         "price": "890",
         "year": "2021",
+        "amount": "21",
         "img": "./assets/images/asus-zenbook-8-256.jpg"
     },
     {
@@ -112,6 +121,7 @@ const productsArr = [
         "color": "grey",
         "price": "700",
         "year": "2020",
+        "amount": "19",
         "img": "./assets/images/asus-vivobook-8-256.jpg"
     },
     {
@@ -123,6 +133,7 @@ const productsArr = [
         "color": "black",
         "price": "1800",
         "year": "2022",
+        "amount": "9",
         "img": "./assets/images/asus-rogstrix-16-1Tb.webp"
     },
     {
@@ -134,6 +145,7 @@ const productsArr = [
         "color": "black",
         "price": "1590",
         "year": "2022",
+        "amount": "8",
         "img": "./assets/images/asus-tuf-16-512.webp"
     },
     {
@@ -145,6 +157,7 @@ const productsArr = [
         "color": "grey",
         "price": "2050",
         "year": "2022",
+        "amount": "18",
         "img": "./assets/images/lenovo-legion-16-1024.jpg"
     },
     {
@@ -156,6 +169,7 @@ const productsArr = [
         "color": "silver",
         "price": "880",
         "year": "2020",
+        "amount": "13",
         "img": "./assets/images/lenovo-ideapad-8-256.jpg"
     },
     {
@@ -167,6 +181,7 @@ const productsArr = [
         "color": "black",
         "price": "680",
         "year": "2020",
+        "amount": "11",
         "img": "./assets/images/lenovo-V14-8-256.jpg"
     },
     {
@@ -178,6 +193,7 @@ const productsArr = [
         "color": "grey",
         "price": "1000",
         "year": "2021",
+        "amount": "20",
         "img": "./assets/images/lenovo-thinkbook-16-512.jpg"
     },
     {
@@ -189,6 +205,7 @@ const productsArr = [
         "color": "silver",
         "price": "1590",
         "year": "2022",
+        "amount": "16",
         "img": "./assets/images/dell-vostro-16-1024.jpg"
     },
     {
@@ -200,6 +217,7 @@ const productsArr = [
         "color": "black",
         "price": "1490",
         "year": "2021",
+        "amount": "24",
         "img": "./assets/images/dell-latitude-16-512.jpg"
     },
     {
@@ -211,6 +229,7 @@ const productsArr = [
         "color": "silver",
         "price": "750",
         "year": "2020",
+        "amount": "13",
         "img": "./assets/images/dell-vostro-8-256.jpg"
     },
     {
@@ -222,6 +241,7 @@ const productsArr = [
         "color": "grey",
         "price": "1980",
         "year": "2022",
+        "amount": "2",
         "img": "./assets/images/dell-latitude-16-512.jpg"
     },
     {
@@ -233,6 +253,7 @@ const productsArr = [
         "color": "silver",
         "price": "850",
         "year": "2020",
+        "amount": "18",
         "img": "./assets/images/dell-vostro-8-256.jpg"
     },
   ]
@@ -382,18 +403,21 @@ function filterArrProducts() {
     });
     renderProducts();
     if (newArrProductsResult.length === 0) {
-        openModal('')
+        openModal('Товар не найден');
     }
 }
 
 // ------------------ Рендер списка продуктов ------------------ //
 
-function renderProducts() {
+function renderProducts(n) {
+    if (!n) {
+        n = newArrProductsResult;
+    }
     contentProducts.innerHTML = '';
-    newArrProductsResult.forEach(el => {
+    n.forEach(el => {
         let tempDiv = document.createElement('div');
         tempDiv.classList.add('element');
-        tempDiv.innerHTML = `<img src="${el.img}" alt=""><p>${el.name}</p><div class="product-block-group"><div class="product-block"><p>year: ${el.year}</p><p>color: ${el.color}</p></div><span class="material-symbols-outlined add-cart">shopping_cart_checkout</span></div>`
+        tempDiv.innerHTML = `<img src="${el.img}" alt=""><p>${el.name}</p><div class="product-block-group"><div class="product-block"><p>year: ${el.year}</p><p>color: ${el.color}</p></div><div>Количество на складе: ${el.amount}</div><div class="product-down-group"><p class="product-price">${el.price}$</p><span class="material-symbols-outlined add-cart">shopping_cart_checkout</span></div></div>`
         contentProducts.appendChild(tempDiv);
     });
 }
@@ -452,9 +476,9 @@ function addToBusket(EO) {
         if (busketCompleteArr.length < 20) {
             EO.target.innerHTML = 'add_shopping_cart';
             EO.target.classList.add('add-complete');
+            EO.target.parentNode.parentNode.parentNode.style.border = 'solid lightgreen 1px';
             productsArr.forEach(el => {
-                
-                    if (el.name === EO.target.parentNode.previousSibling.innerText) {
+                    if (el.name === EO.target.parentNode.parentNode.parentNode.childNodes[1].innerText) {
                         busketCompleteArr.push(el);
                     }
                 
@@ -465,8 +489,9 @@ function addToBusket(EO) {
         }
     } else {
         EO.target.classList.remove('add-complete');
+        EO.target.parentNode.parentNode.parentNode.style.border = "solid rgb(229, 229, 229) 1px";
         busketCompleteArr.forEach((el,i) => {
-            if (el.name === EO.target.parentNode.previousSibling.innerText) {
+            if (el.name === EO.target.parentNode.parentNode.parentNode.childNodes[1].innerText) {
                 busketCompleteArr.splice(i,1);
                 EO.target.innerHTML = 'shopping_cart_checkout';
             }
@@ -493,4 +518,25 @@ function openModal(txt) {
 function closeModal() {
     modalWindow.style.display = 'none';
     document.body.style.overflow = 'auto';
+    searchField.value = '';
 }
+
+// ------------------ Поиск в поле ------------------ //
+
+let searchField = document.querySelector('.search');
+searchField.addEventListener('input', searchByField);
+
+function searchByField() {
+    let arrFieldResult = [];
+    newArrProductsResult.forEach(elem => {
+        if (elem.name.lastIndexOf(searchField.value) !== -1) {
+            arrFieldResult.push(elem);
+        } else {
+            console.log('Не найден')
+        }
+    });
+    renderProducts(arrFieldResult);
+    if (arrFieldResult.length === 0) {
+        openModal('Товар не найден');
+    }
+};
