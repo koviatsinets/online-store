@@ -258,20 +258,145 @@ const productsArr = [
     },
   ]
 
+// ------------------ Организация массива данных для товаров ------------------ //
+
+let lsTempObj = {
+    'filter' : {
+        'brandApple': false,
+        'brandASUS': false,
+        'brandHP': false,
+        'brandLenovo': false,
+        'brandDell': false,
+        'disp13': false,
+        'disp14': false,
+        'disp15': false,
+        'disp16': false,
+        'ram8': false,
+        'ram16': false,
+        'stor256': false,
+        'stor512': false,
+        'stor1024': false,
+        'colSilv': false,
+        'colBlack': false,
+        'colGray': false,
+    },
+    'sort': {
+        'az': false,
+        'za': false,
+        'yearUp': false,
+        'yearDown': false
+    },
+    'cart': []
+}
+
+// ------------------ Общий блок кода ------------------ //
+
+lsTempObj = (localStorage.getItem('rsschool-koviatsinets-store') === null)? lsTempObj : JSON.parse(localStorage.getItem('rsschool-koviatsinets-store'));
 let contentProducts = document.querySelector('.content-products');
 let checkBoxList = document.querySelectorAll('input[type=checkbox]');
 let cartNumber = document.querySelector('.cart-number');
-
-
-for (let el of checkBoxList) {
-    el.addEventListener('click', filterArrProducts);
-}
-
+let buttonSortAZ = document.querySelector('.button-sort-az');
+let buttonSortZA = document.querySelector('.button-sort-za');
+let buttonSortYearUp = document.querySelector('.button-sort-year-up');
+let buttonSortYearDown = document.querySelector('.button-sort-year-down');
+let busketCompleteArr = [];
 let newArrProductsResult = [];
+let clearButton = document.querySelector('.clear');
+let buttonModalClose = document.querySelector('.button-modal-close');
+let modalWindow = document.querySelector('.fog');
+let searchField = document.querySelector('.search');
+let clearSearchButton = document.querySelector('.search-button');
+const buttonSortArr = [buttonSortAZ, buttonSortZA, buttonSortYearUp, buttonSortYearDown];
 
+checkBoxList.forEach(el => el.addEventListener('click', filterArrProducts));
+buttonSortArr.forEach(el => el.addEventListener('click', compareProducts));
+clearButton.addEventListener('click', clearCheckbox);
+buttonModalClose.addEventListener('click', closeModal);
+searchField.addEventListener('input', searchByField);
+clearSearchButton.addEventListener('click', clearSearch);
+
+pullLocalStorage();
 filterArrProducts();
 
+// ------------------ Подтягивание из localeStorage ------------------ //
 
+function pullLocalStorage() {
+    checkBoxList.forEach(el => {
+        if (el.id === 'brand-apple') {el.checked = lsTempObj.filter.brandApple};
+        if (el.id === 'brand-asus') {el.checked = lsTempObj.filter.brandASUS};
+        if (el.id === 'brand-HP') {el.checked = lsTempObj.filter.brandHP};
+        if (el.id === 'brand-lenovo') {el.checked = lsTempObj.filter.brandLenovo};
+        if (el.id === 'brand-dell') {el.checked = lsTempObj.filter.brandDell};
+        if (el.id === 'display-13') {el.checked = lsTempObj.filter.disp13};
+        if (el.id === 'display-14') {el.checked = lsTempObj.filter.disp14};
+        if (el.id === 'display-15') {el.checked = lsTempObj.filter.disp15};
+        if (el.id === 'display-16') {el.checked = lsTempObj.filter.disp16};
+        if (el.id === 'ram-8') {el.checked = lsTempObj.filter.ram8};
+        if (el.id === 'ram-16') {el.checked = lsTempObj.filter.ram16};
+        if (el.id === 'storage-256') {el.checked = lsTempObj.filter.stor256};
+        if (el.id === 'storage-512') {el.checked = lsTempObj.filter.stor512};
+        if (el.id === 'storage-1024') {el.checked = lsTempObj.filter.stor1024};
+        if (el.id === 'color-silver') {el.checked = lsTempObj.filter.colSilv};
+        if (el.id === 'color-black') {el.checked = lsTempObj.filter.colBlack};
+        if (el.id === 'color-grey') {el.checked = lsTempObj.filter.colGray};
+    });
+    buttonSortArr.forEach(el => {
+        if (el.classList.contains("button-sort-az")) {
+            if (lsTempObj.sort.az === true) {
+                el.classList.add('set-button-sort');
+            }
+        }
+        if (el.classList.contains("button-sort-za")) {
+            if (lsTempObj.sort.za === true) {
+                el.classList.add('set-button-sort');
+            }
+        }
+        if (el.classList.contains("button-sort-year-up")) {
+            if (lsTempObj.sort.yearUp === true) {
+                el.classList.add('set-button-sort');
+            }
+        }
+        if (el.classList.contains("button-sort-year-down")) {
+            if (lsTempObj.sort.yearDown === true) {
+                el.classList.add('set-button-sort');
+            }
+        }
+    });
+    busketCompleteArr = lsTempObj.cart;
+    cartNumber.innerHTML = busketCompleteArr.length;
+}
+
+// ------------------ Загрузка в localeStorage ------------------ //
+
+function updateLocaleStorage() {
+    checkBoxList.forEach(el => {
+        if (el.id === 'brand-apple') {lsTempObj.filter.brandApple = (el.checked? true : false)};
+        if (el.id === 'brand-asus') {lsTempObj.filter.brandASUS = (el.checked? true : false)};
+        if (el.id === 'brand-HP') {lsTempObj.filter.brandHP = (el.checked? true : false)};
+        if (el.id === 'brand-lenovo') {lsTempObj.filter.brandLenovo = (el.checked? true : false)};
+        if (el.id === 'brand-dell') {lsTempObj.filter.brandDell = (el.checked? true : false)};
+        if (el.id === 'display-13') {lsTempObj.filter.disp13 = (el.checked? true : false)};
+        if (el.id === 'display-14') {lsTempObj.filter.disp14 = (el.checked? true : false)};
+        if (el.id === 'display-15') {lsTempObj.filter.disp15 = (el.checked? true : false)};
+        if (el.id === 'display-16') {lsTempObj.filter.disp16 = (el.checked? true : false)};
+        if (el.id === 'ram-8') {lsTempObj.filter.ram8 = (el.checked? true : false)};
+        if (el.id === 'ram-16') {lsTempObj.filter.ram16 = (el.checked? true : false)};
+        if (el.id === 'storage-256') {lsTempObj.filter.stor256 = (el.checked? true : false)};
+        if (el.id === 'storage-512') {lsTempObj.filter.stor512 = (el.checked? true : false)};
+        if (el.id === 'storage-1024') {lsTempObj.filter.stor1024 = (el.checked? true : false)};
+        if (el.id === 'color-silver') {lsTempObj.filter.colSilv = (el.checked? true : false)};
+        if (el.id === 'color-black') {lsTempObj.filter.colBlack = (el.checked? true : false)};
+        if (el.id === 'color-grey') {lsTempObj.filter.colGray = (el.checked? true : false)};
+    });
+    buttonSortArr.forEach(el => {
+        if (el.classList.contains("button-sort-az")) {lsTempObj.sort.az = (el.classList.contains("set-button-sort")? true : false)};
+        if (el.classList.contains("button-sort-za")) {lsTempObj.sort.za = (el.classList.contains("set-button-sort")? true : false)};
+        if (el.classList.contains("button-sort-year-up")) {lsTempObj.sort.yearUp = (el.classList.contains("set-button-sort")? true : false)};
+        if (el.classList.contains("button-sort-year-down")) {lsTempObj.sort.yearDown = (el.classList.contains("set-button-sort")? true : false)};
+    });
+    lsTempObj.cart = busketCompleteArr;
+    localStorage.setItem('rsschool-koviatsinets-store', JSON.stringify(lsTempObj));
+}
 
 // ------------------ Слайд-меню ------------------ //
 
@@ -419,17 +544,22 @@ function renderProducts(n) {
         tempDiv.classList.add('element');
         tempDiv.innerHTML = `<img src="${el.img}" alt=""><p>${el.name}</p><div class="product-block-group"><div class="product-block"><p>year: ${el.year}</p><p>color: ${el.color}</p></div><div>Количество на складе: ${el.amount}</div><div class="product-down-group"><p class="product-price">${el.price}$</p><span class="material-symbols-outlined add-cart">shopping_cart_checkout</span></div></div>`
         contentProducts.appendChild(tempDiv);
+        for (let elem of busketCompleteArr) {
+            if (elem.name === el.name) {
+                tempDiv.childNodes[2].childNodes[2].childNodes[1].innerHTML = 'add_shopping_cart';
+                tempDiv.childNodes[2].childNodes[2].childNodes[1].classList.add('add-complete');
+                tempDiv.style.border = 'solid lightgreen 1px';
+            }
+        }
     });
     let addToBusketArr = document.querySelectorAll('.add-cart');
     addToBusketArr.forEach(el => {
         el.addEventListener('click', addToBusket);
     });
+    updateLocaleStorage();
 }
 
 // ------------------ Кнопка "очистить" ------------------ //
-
-let clearButton = document.querySelector('.clear');
-clearButton.addEventListener('click', clearCheckbox);
 
 function clearCheckbox() {
     checkBoxList.forEach(el => {
@@ -440,17 +570,9 @@ function clearCheckbox() {
 
 // ------------------ Сортировка ------------------ //
 
-let buttonSortAZ = document.querySelector('.button-sort-az');
-let buttonSortZA = document.querySelector('.button-sort-za');
-let buttonSortYearUp = document.querySelector('.button-sort-year-up');
-let buttonSortYearDown = document.querySelector('.button-sort-year-down');
-
-const buttonSortArr = [buttonSortAZ, buttonSortZA, buttonSortYearUp, buttonSortYearDown];
-buttonSortArr.forEach(el => {el.addEventListener('click', compareProducts)})
-
 function compareProducts(EO) {
     EO=EO||window.event;
-    buttonSortArr.forEach(el => {el.classList.remove('setButtonSort')})
+    buttonSortArr.forEach(el => {el.classList.remove('set-button-sort')})
     if (EO.currentTarget.classList.value === "button-sort-az") {
         newArrProductsResult.sort((a,b) => a.name.localeCompare(b.name))
     }
@@ -463,17 +585,11 @@ function compareProducts(EO) {
     if (EO.currentTarget.classList.value === "button-sort-year-down") {
         newArrProductsResult.sort((a,b) => b.year.localeCompare(a.year))
     }
-    filterArrProducts();
-    EO.currentTarget.classList.add('setButtonSort');
+    EO.currentTarget.classList.add('set-button-sort');
+    renderProducts();
 }
 
 // ------------------ Добавление и удаление из корзины ------------------ //
-
-// let addToBusketArr = document.querySelectorAll('.add-cart');
-// addToBusketArr.forEach(el => {
-//     el.addEventListener('click', addToBusket);
-// })
-let busketCompleteArr = [];
 
 function addToBusket(EO) {
     if (EO.target.classList.contains('add-complete') === false) {
@@ -485,10 +601,8 @@ function addToBusket(EO) {
                     if (el.name === EO.target.parentNode.parentNode.parentNode.childNodes[1].innerText) {
                         busketCompleteArr.push(el);
                     }
-                
             });
         } else {
-            console.log('>20')
             openModal();
         }
     } else {
@@ -502,15 +616,10 @@ function addToBusket(EO) {
         });
     };
     cartNumber.innerHTML = busketCompleteArr.length;
-    console.log(busketCompleteArr);
+    updateLocaleStorage();
 }
 
 // ------------------ Модальное окно ------------------ //
-
-let buttonModalClose = document.querySelector('.button-modal-close');
-let modalWindow = document.querySelector('.fog');
-
-buttonModalClose.addEventListener('click', closeModal);
 
 function openModal() {
     modalWindow.style.display = 'flex';
@@ -527,16 +636,6 @@ function closeModal() {
 
 // ------------------ Поиск в поле ------------------ //
 
-let searchField = document.querySelector('.search');
-searchField.addEventListener('input', searchByField);
-
-let clearSearchButton = document.querySelector('.search-button');
-clearSearchButton.addEventListener('click', clearSearch);
-
-function clearSearch() {
-    searchField.value = '';
-}
-
 function searchByField() {
     let arrFieldResult = [];
     newArrProductsResult.forEach(elem => {
@@ -551,3 +650,10 @@ function searchByField() {
         contentProducts.innerHTML = 'Товар не найден';
     }
 };
+
+// ------------------ Очистка поля ------------------ //
+
+function clearSearch() {
+    searchField.value = '';
+    renderProducts();
+}
