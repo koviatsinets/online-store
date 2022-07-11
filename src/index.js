@@ -403,7 +403,7 @@ function filterArrProducts() {
     });
     renderProducts();
     if (newArrProductsResult.length === 0) {
-        openModal('Товар не найден');
+        contentProducts.innerHTML = 'Товар не найден';
     }
 }
 
@@ -419,6 +419,10 @@ function renderProducts(n) {
         tempDiv.classList.add('element');
         tempDiv.innerHTML = `<img src="${el.img}" alt=""><p>${el.name}</p><div class="product-block-group"><div class="product-block"><p>year: ${el.year}</p><p>color: ${el.color}</p></div><div>Количество на складе: ${el.amount}</div><div class="product-down-group"><p class="product-price">${el.price}$</p><span class="material-symbols-outlined add-cart">shopping_cart_checkout</span></div></div>`
         contentProducts.appendChild(tempDiv);
+    });
+    let addToBusketArr = document.querySelectorAll('.add-cart');
+    addToBusketArr.forEach(el => {
+        el.addEventListener('click', addToBusket);
     });
 }
 
@@ -465,10 +469,10 @@ function compareProducts(EO) {
 
 // ------------------ Добавление и удаление из корзины ------------------ //
 
-let addToBusketArr = document.querySelectorAll('.add-cart');
-addToBusketArr.forEach(el => {
-    el.addEventListener('click', addToBusket);
-})
+// let addToBusketArr = document.querySelectorAll('.add-cart');
+// addToBusketArr.forEach(el => {
+//     el.addEventListener('click', addToBusket);
+// })
 let busketCompleteArr = [];
 
 function addToBusket(EO) {
@@ -485,7 +489,7 @@ function addToBusket(EO) {
             });
         } else {
             console.log('>20')
-            openModal('Извините все слоты заполнены');
+            openModal();
         }
     } else {
         EO.target.classList.remove('add-complete');
@@ -508,10 +512,10 @@ let modalWindow = document.querySelector('.fog');
 
 buttonModalClose.addEventListener('click', closeModal);
 
-function openModal(txt) {
+function openModal() {
     modalWindow.style.display = 'flex';
     document.body.style.overflow = 'hidden';
-    console.log(modalWindow.childNodes[1].childNodes[1].innerText = txt)
+    modalWindow.childNodes[1].childNodes[1].innerText = 'Извините, все слоты заполнены';
     buttonModalClose.focus();
 }
 
@@ -526,6 +530,13 @@ function closeModal() {
 let searchField = document.querySelector('.search');
 searchField.addEventListener('input', searchByField);
 
+let clearSearchButton = document.querySelector('.search-button');
+clearSearchButton.addEventListener('click', clearSearch);
+
+function clearSearch() {
+    searchField.value = '';
+}
+
 function searchByField() {
     let arrFieldResult = [];
     newArrProductsResult.forEach(elem => {
@@ -537,6 +548,6 @@ function searchByField() {
     });
     renderProducts(arrFieldResult);
     if (arrFieldResult.length === 0) {
-        openModal('Товар не найден');
+        contentProducts.innerHTML = 'Товар не найден';
     }
 };

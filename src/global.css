@@ -72,7 +72,7 @@ section {
     color: black;
 }
 
-.nav-links a {
+.nav-links div {
     margin: 0 15px 0 15px;
     color: darkblue;
     text-decoration: none;
@@ -82,9 +82,10 @@ section {
     color: rgb(40, 40, 40);
     letter-spacing: 2px;
     transition: linear 0.2s;
+    cursor: pointer;
 }
 
-.nav-links a:hover {
+.nav-links div:hover {
     color: rgb(203, 0, 0);
     transition: linear 0.2s;
 }
@@ -133,6 +134,10 @@ section {
 
 .main-footer-center p {
     margin: 0 15px 0 15px;
+}
+
+.main-footer-center div {
+    cursor: pointer;
 }
 
 .main-main-center {
@@ -245,8 +250,24 @@ section {
     margin: 20px 0 20px 0;
 }
 
-.search {
+.search-block {
     width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.search-button {
+    width: 30px;
+    height: 30px;
+}
+
+.search-button:hover {
+    color: rgb(203, 0, 0);
+    cursor: pointer;
+}
+
+.search {
+    width: 80%;
     height: 30px;
     margin-bottom: 30px;
     padding-left: 6px;
@@ -514,5 +535,6 @@ section {
 
 .product-price {
     font-weight: bold;
-    color: rgb(69, 69, 69) !important;
+    color: rgb(103, 103, 103) !important;
 }
+
