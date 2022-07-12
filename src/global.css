@@ -538,3 +538,33 @@ section {
     color: rgb(103, 103, 103) !important;
 }
 
+.line {
+    border-bottom: solid rgb(162, 162, 162) 1px;
+    height: 1px;
+    width: 70%;
+}
+
+.range-filter {
+    margin-top: 30px;
+    width: 100%;
+    background-color: #e4e4e4;
+}
+
+.range-filter > div {
+    width: 100%;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    /* cursor: pointer; */
+    
+}
+
+.range-filter > div:first-child {
+    border-bottom: solid rgb(209, 209, 209) 1px;
+}
+
+.range-filter label {
+    color: rgb(40, 40, 40);
+}
