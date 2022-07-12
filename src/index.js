@@ -279,6 +279,11 @@ let lsTempObj = {
         'colSilv': false,
         'colBlack': false,
         'colGray': false,
+        'priceFrom': 0,
+        'priceTo': 2050,
+        'amountFrom': 0,
+        'amountTo': 24,
+        'fieldSearch': ''
     },
     'sort': {
         'az': false,
@@ -315,7 +320,43 @@ buttonModalClose.addEventListener('click', closeModal);
 searchField.addEventListener('input', searchByField);
 clearSearchButton.addEventListener('click', clearSearch);
 
+const fromSlider = document.querySelector('#fromSlider');
+const toSlider = document.querySelector('#toSlider');
+const showPriceFrom = document.querySelector('#price-show-from');
+const showPriceTo = document.querySelector('#price-show-to');
+fillSlider(fromSlider, toSlider, '#C6C6C6', '#25daa5', toSlider);
+setToggleAccessible(toSlider);
+
+fromSlider.oninput = () => {
+    controlFromSlider(fromSlider, toSlider);
+    filterArrProducts();
+};
+toSlider.oninput = () => {
+    controlToSlider(fromSlider, toSlider);
+    filterArrProducts();
+};
+
+const fromSliderAmount = document.querySelector('#fromSliderAmount');
+const toSliderAmount = document.querySelector('#toSliderAmount');
+const showPriceFromAmount = document.querySelector('#amount-show-from');
+const showPriceToAmount = document.querySelector('#amount-show-to');
+fillSliderAmount(fromSliderAmount, toSliderAmount, '#C6C6C6', '#25daa5', toSliderAmount);
+setToggleAccessibleAmount(toSliderAmount);
+
+fromSliderAmount.oninput = () => {
+    controlFromSliderAmount(fromSliderAmount, toSliderAmount);
+    filterArrProducts();
+};
+toSliderAmount.oninput = () => {
+    controlToSliderAmount(fromSliderAmount, toSliderAmount);
+    filterArrProducts();
+};
+
 pullLocalStorage();
+controlFromSlider(fromSlider, toSlider);
+controlToSlider(fromSlider, toSlider);
+controlFromSliderAmount(fromSliderAmount, toSliderAmount);
+controlToSliderAmount(fromSliderAmount, toSliderAmount);
 filterArrProducts();
 
 // ------------------ Подтягивание из localeStorage ------------------ //
@@ -362,6 +403,10 @@ function pullLocalStorage() {
             }
         }
     });
+    fromSlider.value = lsTempObj.filter.priceFrom;
+    toSlider.value = lsTempObj.filter.priceTo;
+    fromSliderAmount.value = lsTempObj.filter.amountFrom;
+    toSliderAmount.value = lsTempObj.filter.amountTo;
     busketCompleteArr = lsTempObj.cart;
     cartNumber.innerHTML = busketCompleteArr.length;
 }
@@ -394,7 +439,12 @@ function updateLocaleStorage() {
         if (el.classList.contains("button-sort-year-up")) {lsTempObj.sort.yearUp = (el.classList.contains("set-button-sort")? true : false)};
         if (el.classList.contains("button-sort-year-down")) {lsTempObj.sort.yearDown = (el.classList.contains("set-button-sort")? true : false)};
     });
+    lsTempObj.filter.priceFrom = Number(fromSlider.value);
+    lsTempObj.filter.priceTo = Number(toSlider.value);
+    lsTempObj.filter.amountFrom = Number(fromSliderAmount.value);
+    lsTempObj.filter.amountTo = Number(toSliderAmount.value);
     lsTempObj.cart = busketCompleteArr;
+    lsTempObj.filter.fieldSearch = searchField.value;
     localStorage.setItem('rsschool-koviatsinets-store', JSON.stringify(lsTempObj));
 }
 
@@ -437,12 +487,14 @@ function openColor() {
 // ------------------ Фильтрация ------------------ //
 
 function filterArrProducts() {
-
+    searchField.value = '';
     let newArrProductsBrand = [];
     let newArrProductsDisplay = [];
     let newArrProductsRam = [];
     let newArrProductsStorage = [];
     let newArrProductsColor = [];
+    let newArrProductsPrice = [];
+    let newArrProductsAmount = [];
     
     productsArr.forEach(el => {
         if (checkBoxList[0].checked || checkBoxList[1].checked || checkBoxList[2].checked || checkBoxList[3].checked || checkBoxList[4].checked) {
@@ -510,7 +562,7 @@ function filterArrProducts() {
             newArrProductsStorage = newArrProductsRam;
         }
     });
-    newArrProductsRam.forEach(el=> {
+    newArrProductsStorage.forEach(el=> {
         if (checkBoxList[14].checked || checkBoxList[15].checked || checkBoxList[16].checked) {
             if (el.color === "silver" && checkBoxList[14].checked) {
                 newArrProductsColor.push(el);
@@ -524,8 +576,19 @@ function filterArrProducts() {
         } else {
             newArrProductsColor = newArrProductsStorage;
         }
-    newArrProductsResult = newArrProductsColor;
     });
+    newArrProductsColor.forEach(el => {
+        if ((Number(el.price) > Number(fromSlider.value)) && (Number(el.price) < Number(toSlider.value))) {
+            newArrProductsPrice.push(el);
+        }
+    });
+    newArrProductsPrice.forEach(el => {
+        if ((Number(el.amount) > Number(fromSliderAmount.value)) && (Number(el.amount) < Number(toSliderAmount.value))) {
+            newArrProductsAmount.push(el);
+        }
+    });
+    newArrProductsResult = newArrProductsAmount;
+    searchByField();
     renderProducts();
     if (newArrProductsResult.length === 0) {
         contentProducts.innerHTML = 'Товар не найден';
@@ -566,7 +629,18 @@ function clearCheckbox() {
         el.checked = false;
     });
     filterArrProducts();
+    buttonSortArr.forEach(el => {el.classList.remove('set-button-sort')});
+    fromSlider.value = 0;
+    toSlider.value = 2050;
+    fromSliderAmount.value = 0;
+    toSliderAmount.value = 24;
+    controlFromSlider(fromSlider, toSlider);
+    controlToSlider(fromSlider, toSlider);
+    controlFromSliderAmount(fromSliderAmount, toSliderAmount);
+    controlToSliderAmount(fromSliderAmount, toSliderAmount);
+    updateLocaleStorage();
 }
+
 
 // ------------------ Сортировка ------------------ //
 
@@ -587,6 +661,10 @@ function compareProducts(EO) {
     }
     EO.currentTarget.classList.add('set-button-sort');
     renderProducts();
+    if (searchField.value !== '') {
+        console.log('В строке поиска есть значенииие')
+        searchByField();
+    }
 }
 
 // ------------------ Добавление и удаление из корзины ------------------ //
@@ -648,7 +726,8 @@ function searchByField() {
     renderProducts(arrFieldResult);
     if (arrFieldResult.length === 0) {
         contentProducts.innerHTML = 'Товар не найден';
-    }
+    };
+    updateLocaleStorage();
 };
 
 // ------------------ Очистка поля ------------------ //
@@ -657,3 +736,127 @@ function clearSearch() {
     searchField.value = '';
     renderProducts();
 }
+
+// ------------------ Слайдер с двумя ползунками (Price)------------------ //
+
+function controlFromSlider(fromSlider, toSlider) {
+    searchField.value = '';
+  const [from, to] = getParsed(fromSlider, toSlider);
+  fillSlider(fromSlider, toSlider, '#C6C6C6', '#25daa5', toSlider);
+  if (from > to) {
+    fromSlider.value = to;
+    showPriceFrom.innerHTML = to + '$';
+    // console.log(to)
+  } else {
+    showPriceFrom.innerHTML = from + '$';
+    // console.log(from)
+  }
+}
+
+function controlToSlider(fromSlider, toSlider,) {
+    searchField.value = '';
+  const [from, to] = getParsed(fromSlider, toSlider);
+  fillSlider(fromSlider, toSlider, '#C6C6C6', '#25daa5', toSlider);
+  setToggleAccessible(toSlider);
+  if (from <= to) {
+    toSlider.value = to;
+    showPriceTo.innerHTML = to + '$';
+    // console.log(to)
+  } else {
+    showPriceTo.innerHTML = from + '$';
+    // console.log(from)
+    toSlider.value = from;
+  }
+}
+
+function getParsed(currentFrom, currentTo) {
+  const from = parseInt(currentFrom.value, 10);
+  const to = parseInt(currentTo.value, 10);
+  return [from, to];
+}
+
+function fillSlider(from, to, sliderColor, rangeColor, controlSlider) {
+    const rangeDistance = to.max-to.min;
+    const fromPosition = from.value - to.min;
+    const toPosition = to.value - to.min;
+    controlSlider.style.background = `linear-gradient(
+      to right,
+      ${sliderColor} 0%,
+      ${sliderColor} ${(fromPosition)/(rangeDistance)*100}%,
+      ${rangeColor} ${((fromPosition)/(rangeDistance))*100}%,
+      ${rangeColor} ${(toPosition)/(rangeDistance)*100}%, 
+      ${sliderColor} ${(toPosition)/(rangeDistance)*100}%, 
+      ${sliderColor} 100%)`;
+}
+
+function setToggleAccessible(currentTarget) {
+  const toSlider = document.querySelector('#toSlider');
+  if (Number(currentTarget.value) <= 0 ) {
+    toSlider.style.zIndex = 2;
+  } else {
+    toSlider.style.zIndex = 0;
+  }
+}
+
+// ------------------ Слайдер с двумя ползунками (Amount)------------------ //
+
+function controlFromSliderAmount(fromSlider, toSlider) {
+    searchField.value = '';
+    const [from, to] = getParsedAmount(fromSlider, toSlider);
+    fillSliderAmount(fromSlider, toSlider, '#C6C6C6', '#25daa5', toSlider);
+    if (from > to) {
+      fromSlider.value = to;
+      showPriceFromAmount.innerHTML = to + 'psc.';
+      // console.log(to)
+    } else {
+      showPriceFromAmount.innerHTML = from + 'psc.';
+      // console.log(from)
+    }
+  }
+
+function controlToSliderAmount(fromSlider, toSlider,) {
+    searchField.value = '';
+    const [from, to] = getParsedAmount(fromSlider, toSlider);
+    fillSliderAmount(fromSlider, toSlider, '#C6C6C6', '#25daa5', toSlider);
+    setToggleAccessibleAmount(toSlider);
+    if (from <= to) {
+      toSlider.value = to;
+      showPriceToAmount.innerHTML = to + 'psc.';
+      // console.log(to)
+    } else {
+      showPriceToAmount.innerHTML = from + 'psc.';
+      // console.log(from)
+      toSlider.value = from;
+    }
+  }
+
+function getParsedAmount(currentFrom, currentTo) {
+    const from = parseInt(currentFrom.value, 10);
+    const to = parseInt(currentTo.value, 10);
+    return [from, to];
+  }
+
+function fillSliderAmount(from, to, sliderColor, rangeColor, controlSlider) {
+    const rangeDistance = to.max-to.min;
+    const fromPosition = from.value - to.min;
+    const toPosition = to.value - to.min;
+    controlSlider.style.background = `linear-gradient(
+      to right,
+      ${sliderColor} 0%,
+      ${sliderColor} ${(fromPosition)/(rangeDistance)*100}%,
+      ${rangeColor} ${((fromPosition)/(rangeDistance))*100}%,
+      ${rangeColor} ${(toPosition)/(rangeDistance)*100}%, 
+      ${sliderColor} ${(toPosition)/(rangeDistance)*100}%, 
+      ${sliderColor} 100%)`;
+}
+
+function setToggleAccessibleAmount(currentTarget) {
+    const toSliderAmount = document.querySelector('#toSliderAmount');
+    if (Number(currentTarget.value) <= 0 ) {
+      toSliderAmount.style.zIndex = 2;
+    } else {
+      toSliderAmount.style.zIndex = 0;
+    }
+  }
+  
+

@@ -150,15 +150,29 @@
                             </div>
                         </div>
                         <div class="range-filter">
-                            <div>
-                                <input type="range" id="price-range" name="price-range"
-                                       min="1" max="24">
-                                <label for="price-range">Price</label>
+                            <div class=range-price-text>
+                                <div class="price-name">Price:</div>
+                                <div class="price-group">
+                                    <div id="price-show-from" class="range-price">0$</div>
+                                    <div class="price-slash">-</div>
+                                    <div id="price-show-to" class="range-price">2050$</div>
+                                </div>
                             </div>
                             <div>
-                                <input type="range" id="amount-range" name="amount-range"
-                                       min="680" max="2050">
-                                <label for="amount-range">Amt.</label>
+                                <input type="range" id="fromSlider" value="0" min="0" max="2050">
+                                <input type="range" id="toSlider" value="2050" min="0" max="2050">
+                            </div>
+                            <div class=range-amount-text>
+                                <div class="amount-name">Amount:</div>
+                                <div class="amount-group">
+                                    <div id="amount-show-from" class="range-amount">0psc.</div>
+                                    <div class="amount-slash">-</div>
+                                    <div id="amount-show-to" class="range-amount">24psc.</div>
+                                </div>
+                            </div>
+                            <div>
+                                <input type="range" id="fromSliderAmount" value="0" min="0" max="24">
+                                <input type="range" id="toSliderAmount" value="24" min="0" max="24">
                             </div>
                         </div>
                         <button class="clear">Clear filters</button>

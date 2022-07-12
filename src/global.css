@@ -555,16 +555,129 @@ section {
     height: 35px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 10px;
+    /* justify-content: space-between; */
+    /* padding: 10px; */
     /* cursor: pointer; */
     
 }
 
-.range-filter > div:first-child {
-    border-bottom: solid rgb(209, 209, 209) 1px;
-}
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    pointer-events: all;
+    width: 24px;
+    height: 24px;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px #C6C6C6;
+    cursor: pointer;
+  }
+  
+  input[type=range]::-moz-range-thumb {
+    -webkit-appearance: none;
+    pointer-events: all;
+    width: 24px;
+    height: 24px;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px #C6C6C6;
+    cursor: pointer;  
+  }
+  
+  input[type=range]::-webkit-slider-thumb:hover {
+    background: #f7f7f7;
+  }
+  
+  input[type=range]::-webkit-slider-thumb:active {
+    box-shadow: inset 0 0 3px #387bbe, 0 0 9px #387bbe;
+    -webkit-box-shadow: inset 0 0 3px #387bbe, 0 0 9px #387bbe;
+  }
 
-.range-filter label {
+  
+
+input[type="range"] {
+    -webkit-appearance: none; 
+    appearance: none;
+    height: 2px;
+    width: 190px;
+    position: absolute;
+    background-color: #C6C6C6;
+    pointer-events: none;
+    margin-left: 5px;
+  }
+  
+  #fromSlider {
+    height: 0;
+    z-index: 1;
+  }
+
+  #fromSliderAmount {
+    height: 0;
+    z-index: 1;
+  }
+
+  .range-price-text {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .price-name {
     color: rgb(40, 40, 40);
-}
+    margin-left: 10px;
+  }
+
+  .price-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+   
+    font-size: 12px;
+    color: rgb(40, 40, 40);
+    margin-right: 10px;
+  }
+
+  .price-slash {
+    margin: 0 5px 0 5px;
+  }
+
+  .range-price {
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+
+
+
+
+  .range-amount-text {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .amount-name {
+    color: rgb(40, 40, 40);
+    margin-left: 10px;
+  }
+
+  .amount-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+   
+    font-size: 12px;
+    color: rgb(40, 40, 40);
+    margin-right: 10px;
+  }
+
+  .amount-slash {
+    margin: 0 5px 0 5px;
+  }
+
+  .range-amount {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
