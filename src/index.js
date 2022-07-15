@@ -1,4 +1,7 @@
 import { doc } from 'prettier';
+export {checkBoxList, lsTempObj, buttonSortArr, busketCompleteArr, searchField, cartNumber}
+import updateLocaleStorage from './components/app/localeStoragePush.js';
+import pullLocalStorage from './components/app/localeStoragePull.js'
 import './global.css';
 
 // ------------------ Организация массива данных для товаров ------------------ //
@@ -258,7 +261,7 @@ const productsArr = [
     },
   ]
 
-// ------------------ Организация массива данных для товаров ------------------ //
+// ------------------ Организация объекта данных ls ------------------ //
 
 let lsTempObj = {
     'filter' : {
@@ -358,98 +361,6 @@ controlToSlider(fromSlider, toSlider);
 controlFromSliderAmount(fromSliderAmount, toSliderAmount);
 controlToSliderAmount(fromSliderAmount, toSliderAmount);
 filterArrProducts();
-
-// ------------------ Подтягивание из localeStorage ------------------ //
-
-function pullLocalStorage() {
-    checkBoxList.forEach(el => {
-        if (el.id === 'brand-apple') {el.checked = lsTempObj.filter.brandApple};
-        if (el.id === 'brand-asus') {el.checked = lsTempObj.filter.brandASUS};
-        if (el.id === 'brand-HP') {el.checked = lsTempObj.filter.brandHP};
-        if (el.id === 'brand-lenovo') {el.checked = lsTempObj.filter.brandLenovo};
-        if (el.id === 'brand-dell') {el.checked = lsTempObj.filter.brandDell};
-        if (el.id === 'display-13') {el.checked = lsTempObj.filter.disp13};
-        if (el.id === 'display-14') {el.checked = lsTempObj.filter.disp14};
-        if (el.id === 'display-15') {el.checked = lsTempObj.filter.disp15};
-        if (el.id === 'display-16') {el.checked = lsTempObj.filter.disp16};
-        if (el.id === 'ram-8') {el.checked = lsTempObj.filter.ram8};
-        if (el.id === 'ram-16') {el.checked = lsTempObj.filter.ram16};
-        if (el.id === 'storage-256') {el.checked = lsTempObj.filter.stor256};
-        if (el.id === 'storage-512') {el.checked = lsTempObj.filter.stor512};
-        if (el.id === 'storage-1024') {el.checked = lsTempObj.filter.stor1024};
-        if (el.id === 'color-silver') {el.checked = lsTempObj.filter.colSilv};
-        if (el.id === 'color-black') {el.checked = lsTempObj.filter.colBlack};
-        if (el.id === 'color-grey') {el.checked = lsTempObj.filter.colGray};
-    });
-    buttonSortArr.forEach(el => {
-        if (el.classList.contains("button-sort-az")) {
-            if (lsTempObj.sort.az === true) {
-                el.classList.add('set-button-sort');
-            }
-        }
-        if (el.classList.contains("button-sort-za")) {
-            if (lsTempObj.sort.za === true) {
-                el.classList.add('set-button-sort');
-            }
-        }
-        if (el.classList.contains("button-sort-year-up")) {
-            if (lsTempObj.sort.yearUp === true) {
-                el.classList.add('set-button-sort');
-            }
-        }
-        if (el.classList.contains("button-sort-year-down")) {
-            if (lsTempObj.sort.yearDown === true) {
-                el.classList.add('set-button-sort');
-            }
-        }
-    });
-    fromSlider.value = lsTempObj.filter.priceFrom;
-    toSlider.value = lsTempObj.filter.priceTo;
-    fromSliderAmount.value = lsTempObj.filter.amountFrom;
-    toSliderAmount.value = lsTempObj.filter.amountTo;
-    busketCompleteArr = lsTempObj.cart;
-    cartNumber.innerHTML = busketCompleteArr.length;
-}
-
-// ------------------ Загрузка в localeStorage ------------------ //
-
-function updateLocaleStorage() {
-    checkBoxList.forEach(el => {
-        if (el.id === 'brand-apple') {lsTempObj.filter.brandApple = (el.checked? true : false)};
-        if (el.id === 'brand-asus') {lsTempObj.filter.brandASUS = (el.checked? true : false)};
-        if (el.id === 'brand-HP') {lsTempObj.filter.brandHP = (el.checked? true : false)};
-        if (el.id === 'brand-lenovo') {lsTempObj.filter.brandLenovo = (el.checked? true : false)};
-        if (el.id === 'brand-dell') {lsTempObj.filter.brandDell = (el.checked? true : false)};
-        if (el.id === 'display-13') {lsTempObj.filter.disp13 = (el.checked? true : false)};
-        if (el.id === 'display-14') {lsTempObj.filter.disp14 = (el.checked? true : false)};
-        if (el.id === 'display-15') {lsTempObj.filter.disp15 = (el.checked? true : false)};
-        if (el.id === 'display-16') {lsTempObj.filter.disp16 = (el.checked? true : false)};
-        if (el.id === 'ram-8') {lsTempObj.filter.ram8 = (el.checked? true : false)};
-        if (el.id === 'ram-16') {lsTempObj.filter.ram16 = (el.checked? true : false)};
-        if (el.id === 'storage-256') {lsTempObj.filter.stor256 = (el.checked? true : false)};
-        if (el.id === 'storage-512') {lsTempObj.filter.stor512 = (el.checked? true : false)};
-        if (el.id === 'storage-1024') {lsTempObj.filter.stor1024 = (el.checked? true : false)};
-        if (el.id === 'color-silver') {lsTempObj.filter.colSilv = (el.checked? true : false)};
-        if (el.id === 'color-black') {lsTempObj.filter.colBlack = (el.checked? true : false)};
-        if (el.id === 'color-grey') {lsTempObj.filter.colGray = (el.checked? true : false)};
-    });
-    buttonSortArr.forEach(el => {
-        if (el.classList.contains("button-sort-az")) {lsTempObj.sort.az = (el.classList.contains("set-button-sort")? true : false)};
-        if (el.classList.contains("button-sort-za")) {lsTempObj.sort.za = (el.classList.contains("set-button-sort")? true : false)};
-        if (el.classList.contains("button-sort-year-up")) {lsTempObj.sort.yearUp = (el.classList.contains("set-button-sort")? true : false)};
-        if (el.classList.contains("button-sort-year-down")) {lsTempObj.sort.yearDown = (el.classList.contains("set-button-sort")? true : false)};
-    });
-    lsTempObj.filter.priceFrom = Number(fromSlider.value);
-    lsTempObj.filter.priceTo = Number(toSlider.value);
-    lsTempObj.filter.amountFrom = Number(fromSliderAmount.value);
-    lsTempObj.filter.amountTo = Number(toSliderAmount.value);
-    lsTempObj.cart = busketCompleteArr;
-    lsTempObj.filter.fieldSearch = searchField.value;
-    localStorage.setItem('rsschool-koviatsinets-store', JSON.stringify(lsTempObj));
-}
-
-// ------------------ Слайд-меню ------------------ //
-
 let brand = document.querySelector('#brand');
 let display = document.querySelector('#display');
 let ram = document.querySelector('#ram');
@@ -467,6 +378,13 @@ display.addEventListener('click', openDisplay);
 ram.addEventListener('click', openRam);
 storage.addEventListener('click', openStorage);
 color.addEventListener('click', openColor);
+
+
+
+
+// ------------------ Слайд-меню ------------------ //
+
+
 
 function openBrand() {
     brandBlock.classList.toggle('brand-block-open');
