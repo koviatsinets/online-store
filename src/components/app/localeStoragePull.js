@@ -1,5 +1,5 @@
-import {checkBoxList, lsTempObj, buttonSortArr, busketCompleteArr, cartNumber} from '../../index.js'
-
+import {checkBoxList, buttonSortArr, busketCompleteArr, cartNumber} from '../../index.js';
+import { lsTempObj } from './dataLocaleStorage.js';
 // ------------------ Подтягивание из localeStorage ------------------ //
 
 export default function pullLocalStorage() {
@@ -48,6 +48,6 @@ export default function pullLocalStorage() {
     toSlider.value = lsTempObj.filter.priceTo;
     fromSliderAmount.value = lsTempObj.filter.amountFrom;
     toSliderAmount.value = lsTempObj.filter.amountTo;
-    cartNumber.innerHTML = busketCompleteArr.length;
     lsTempObj.cart.forEach(el => { busketCompleteArr.push(el) });
+    cartNumber.innerHTML = busketCompleteArr.length; 
 }
