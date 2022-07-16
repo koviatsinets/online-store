@@ -35,7 +35,6 @@ export function getParsed(currentFrom: HTMLInputElement, currentTo: HTMLInputEle
 }
 
 export function fillSlider(from: HTMLInputElement, to: HTMLInputElement, sliderColor: string, rangeColor: string, controlSlider: HTMLInputElement) {
-  console.log(to.max)
     const rangeDistance = Number(to.max) - Number(to.min);
     const fromPosition = Number(from.value) - Number(to.min);
     const toPosition = Number(to.value) - Number(to.min);

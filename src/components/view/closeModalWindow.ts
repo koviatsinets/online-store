@@ -1,5 +1,5 @@
 
-import { modalWindow, searchField } from '../../index'
+import { modalWindow, searchField } from '../../index';
 
 export default function closeModal() {
     modalWindow.style.display = 'none';

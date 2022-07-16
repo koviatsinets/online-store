@@ -1,4 +1,5 @@
-import { searchField, newArrProductsResult, checkBoxList, contentProducts, fromSlider, toSlider, fromSliderAmount, toSliderAmount } from '../../index';
+import { searchField, newArrProductsResult, checkBoxList, contentProducts,
+     fromSlider, toSlider, fromSliderAmount, toSliderAmount } from '../../index';
 import { productsArr } from "../app/dataProducts";
 import renderProducts from "../view/renderProducts";
 import searchByField from "./searchByField";

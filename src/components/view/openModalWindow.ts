@@ -1,4 +1,4 @@
-import { modalWindow, buttonModalClose } from '../../index'
+import { modalWindow, buttonModalClose } from '../../index';
 
 // ------------------ Модальное окно ------------------ //
 

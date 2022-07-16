@@ -14,7 +14,7 @@ export function controlFromSliderAmount(fromSlider: HTMLInputElement, toSlider: 
     }
   }
 
-export function controlToSliderAmount(fromSlider: HTMLInputElement, toSlider: HTMLInputElement,) {
+export function controlToSliderAmount(fromSlider: HTMLInputElement, toSlider: HTMLInputElement) {
     searchField.value = '';
     const [from, to] = getParsedAmount(fromSlider, toSlider);
     fillSliderAmount(fromSlider, toSlider, '#C6C6C6', '#25daa5', toSlider);

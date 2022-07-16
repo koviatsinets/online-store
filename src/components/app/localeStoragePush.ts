@@ -26,10 +26,18 @@ export default function updateLocaleStorage() {
         if (el.id === 'color-grey') {lsTempObj.filter.colGray = ((el as HTMLInputElement).checked? true : false)};
     });
     buttonSortArr.forEach(el => {
-        if ((el as HTMLElement).classList.contains("button-sort-az")) {lsTempObj.sort.az = ((el as HTMLElement).classList.contains("set-button-sort")? true : false)};
-        if ((el as HTMLElement).classList.contains("button-sort-za")) {lsTempObj.sort.za = ((el as HTMLElement).classList.contains("set-button-sort")? true : false)};
-        if ((el as HTMLElement).classList.contains("button-sort-year-up")) {lsTempObj.sort.yearUp = ((el as HTMLElement).classList.contains("set-button-sort")? true : false)};
-        if ((el as HTMLElement).classList.contains("button-sort-year-down")) {lsTempObj.sort.yearDown = ((el as HTMLElement).classList.contains("set-button-sort")? true : false)};
+        if ((el as HTMLElement).classList.contains("button-sort-az")) {
+            lsTempObj.sort.az = ((el as HTMLElement).classList.contains("set-button-sort")? true : false)
+        };
+        if ((el as HTMLElement).classList.contains("button-sort-za")) {
+            lsTempObj.sort.za = ((el as HTMLElement).classList.contains("set-button-sort")? true : false)
+        };
+        if ((el as HTMLElement).classList.contains("button-sort-year-up")) {
+            lsTempObj.sort.yearUp = ((el as HTMLElement).classList.contains("set-button-sort")? true : false)
+        };
+        if ((el as HTMLElement).classList.contains("button-sort-year-down")) {
+            lsTempObj.sort.yearDown = ((el as HTMLElement).classList.contains("set-button-sort")? true : false)
+        };
     });
     lsTempObj.filter.priceFrom = fromSlider.value;
     lsTempObj.filter.priceTo = toSlider.value;

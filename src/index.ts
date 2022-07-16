@@ -1,4 +1,3 @@
-// import { doc } from 'prettier';
 export { checkBoxList, buttonSortArr, busketCompleteArr, searchField, cartNumber };
 import pullLocalStorage from "./components/app/localeStoragePull";
 export { brandBlock, displayBlock, ramBlock, storageBlock, colorBlock };
@@ -17,8 +16,6 @@ export { showPriceFrom, showPriceTo, showPriceFromAmount, showPriceToAmount };
 export { fromSlider, toSlider, fromSliderAmount, toSliderAmount };
 export { lsTempObj }
 import './global.css';
-
-
 
 // ------------------ Общий блок кода ------------------ //
 
@@ -57,7 +54,6 @@ let lsTempObj = {
 }
 
 lsTempObj = (localStorage.getItem('rsschool-koviatsinets-store') === null)? lsTempObj : JSON.parse((localStorage.getItem('rsschool-koviatsinets-store')) as string);
-
 let contentProducts: HTMLElement = document.querySelector('.content-products') as HTMLElement;
 let checkBoxList = document.querySelectorAll('input[type=checkbox]');
 let cartNumber: HTMLElement = document.querySelector('.cart-number') as HTMLElement;
@@ -136,20 +132,3 @@ let colorBlock = document.querySelector('#color-block');
 (ram as HTMLElement).addEventListener('click', openRam);
 (storage as HTMLElement).addEventListener('click', openStorage);
 (color as HTMLElement).addEventListener('click', openColor);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
