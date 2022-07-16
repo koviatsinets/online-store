@@ -1,5 +1,5 @@
 import {checkBoxList, buttonSortArr, busketCompleteArr, searchField} from '../../index.js';
-import { lsTempObj } from './dataLocaleStorage.js';
+import { lsTempObj } from '../../index';
 
 // ------------------ Загрузка в localeStorage ------------------ //
 

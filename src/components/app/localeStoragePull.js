@@ -1,5 +1,5 @@
 import {checkBoxList, buttonSortArr, busketCompleteArr, cartNumber} from '../../index.js';
-import { lsTempObj } from './dataLocaleStorage.js';
+import { lsTempObj } from '../../index';
 // ------------------ Подтягивание из localeStorage ------------------ //
 
 export default function pullLocalStorage() {
