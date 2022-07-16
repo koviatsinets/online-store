@@ -1,5 +1,5 @@
-import { searchField } from '../../index';
-import renderProducts from '../view/renderProducts';
+import { searchField } from "../../index";
+import renderProducts from "../view/renderProducts";
 
 // ------------------ Очистка поля ------------------ //
 

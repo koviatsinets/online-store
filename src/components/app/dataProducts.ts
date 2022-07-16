@@ -2,7 +2,7 @@
 
 export const productsArr = [
     {
-        "name": "Macbook Air M1 13\" 8Gb 256Gb",
+        "nameProduct": "Macbook Air M1 13\" 8Gb 256Gb",
         "brand": "Apple",
         "display": "13",
         "ram": "8",
@@ -14,7 +14,7 @@ export const productsArr = [
         "img": "./assets/images/macbook-air-8-256.jpeg"
     },
     {
-        "name": "Macbook Pro M1 13\" 16Gb 256Gb",
+        "nameProduct": "Macbook Pro M1 13\" 16Gb 256Gb",
         "brand": "Apple",
         "display": "13",
         "ram": "16",
@@ -26,7 +26,7 @@ export const productsArr = [
         "img": "./assets/images/macbook-pro-16-256.png"
     },
     {
-        "name": "Macbook Pro M1 16\" 16Gb 512Gb",
+        "nameProduct": "Macbook Pro M1 16\" 16Gb 512Gb",
         "brand": "Apple",
         "display": "16",
         "ram": "16",
@@ -38,7 +38,7 @@ export const productsArr = [
         "img": "./assets/images/macbook-pro-16-512.jpeg"
     },
     {
-        "name": "Macbook Pro M2 14\" 16Gb 1Tb",
+        "nameProduct": "Macbook Pro M2 14\" 16Gb 1Tb",
         "brand": "Apple",
         "display": "14",
         "ram": "16",
@@ -50,7 +50,7 @@ export const productsArr = [
         "img": "./assets/images/macbook-pro-14-1024.png"
     },
     {
-        "name": "HP Victus 16\" 16Gb 512Gb",
+        "nameProduct": "HP Victus 16\" 16Gb 512Gb",
         "brand": "HP",
         "display": "16",
         "ram": "16",
@@ -62,7 +62,7 @@ export const productsArr = [
         "img": "./assets/images/hp-victus-16-512.jpeg"
     },
     {
-        "name": "HP Pavilion 15\" 8Gb 512Gb",
+        "nameProduct": "HP Pavilion 15\" 8Gb 512Gb",
         "brand": "HP",
         "display": "15",
         "ram": "8",
@@ -74,7 +74,7 @@ export const productsArr = [
         "img": "./assets/images/hp-pavilion-8-512.jpeg"
     },
     {
-        "name": "HP ProBook 14\" 16Gb 256Gb",
+        "nameProduct": "HP ProBook 14\" 16Gb 256Gb",
         "brand": "HP",
         "display": "14",
         "ram": "16",
@@ -86,7 +86,7 @@ export const productsArr = [
         "img": "./assets/images/hp-probook-16-256.jpg"
     },
     {
-        "name": "HP EliteBook 16\" 16Gb 1Tb",
+        "nameProduct": "HP EliteBook 16\" 16Gb 1Tb",
         "brand": "HP",
         "display": "16",
         "ram": "16",
@@ -98,7 +98,7 @@ export const productsArr = [
         "img": "./assets/images/hp-elitebook-16-512.jpg"
     },
     {
-        "name": "ASUS ZenBook 13\" 8Gb 256Gb",
+        "nameProduct": "ASUS ZenBook 13\" 8Gb 256Gb",
         "brand": "ASUS",
         "display": "13",
         "ram": "8",
@@ -110,7 +110,7 @@ export const productsArr = [
         "img": "./assets/images/asus-zenbook-8-256.jpg"
     },
     {
-        "name": "ASUS VivoBook 15\" 8Gb 256Gb",
+        "nameProduct": "ASUS VivoBook 15\" 8Gb 256Gb",
         "brand": "ASUS",
         "display": "15",
         "ram": "8",
@@ -122,7 +122,7 @@ export const productsArr = [
         "img": "./assets/images/asus-vivobook-8-256.jpg"
     },
     {
-        "name": "ASUS RogStrix 16\" 16Gb 1Tb",
+        "nameProduct": "ASUS RogStrix 16\" 16Gb 1Tb",
         "brand": "ASUS",
         "display": "16",
         "ram": "16",
@@ -134,7 +134,7 @@ export const productsArr = [
         "img": "./assets/images/asus-rogstrix-16-1Tb.webp"
     },
     {
-        "name": "ASUS Tuf Gaming Dash 16\" 16Gb 512Gb",
+        "nameProduct": "ASUS Tuf Gaming Dash 16\" 16Gb 512Gb",
         "brand": "ASUS",
         "display": "16",
         "ram": "16",
@@ -146,7 +146,7 @@ export const productsArr = [
         "img": "./assets/images/asus-tuf-16-512.webp"
     },
     {
-        "name": "Lenovo Legion 16\" 16Gb 512Gb",
+        "nameProduct": "Lenovo Legion 16\" 16Gb 512Gb",
         "brand": "Lenovo",
         "display": "16",
         "ram": "16",
@@ -158,7 +158,7 @@ export const productsArr = [
         "img": "./assets/images/lenovo-legion-16-1024.jpg"
     },
     {
-        "name": "Lenovo Ideapad 15\" 8Gb 256Gb",
+        "nameProduct": "Lenovo Ideapad 15\" 8Gb 256Gb",
         "brand": "Lenovo",
         "display": "15",
         "ram": "8",
@@ -170,7 +170,7 @@ export const productsArr = [
         "img": "./assets/images/lenovo-ideapad-8-256.jpg"
     },
     {
-        "name": "Lenovo V14 14\" 8Gb 256Gb",
+        "nameProduct": "Lenovo V14 14\" 8Gb 256Gb",
         "brand": "Lenovo",
         "display": "14",
         "ram": "8",
@@ -182,7 +182,7 @@ export const productsArr = [
         "img": "./assets/images/lenovo-V14-8-256.jpg"
     },
     {
-        "name": "Lenovo ThinkBook 14\" 16Gb 512Gb",
+        "nameProduct": "Lenovo ThinkBook 14\" 16Gb 512Gb",
         "brand": "Lenovo",
         "display": "14",
         "ram": "16",
@@ -194,7 +194,7 @@ export const productsArr = [
         "img": "./assets/images/lenovo-thinkbook-16-512.jpg"
     },
     {
-        "name": "Dell Vostro 16\" 16Gb 1Tb",
+        "nameProduct": "Dell Vostro 16\" 16Gb 1Tb",
         "brand": "Dell",
         "display": "16",
         "ram": "16",
@@ -206,7 +206,7 @@ export const productsArr = [
         "img": "./assets/images/dell-vostro-16-1024.jpg"
     },
     {
-        "name": "Dell Latitude 15\" 16Gb 512Gb",
+        "nameProduct": "Dell Latitude 15\" 16Gb 512Gb",
         "brand": "Dell",
         "display": "15",
         "ram": "16",
@@ -218,7 +218,7 @@ export const productsArr = [
         "img": "./assets/images/dell-latitude-16-512.jpg"
     },
     {
-        "name": "Dell Vostro 13\" 8Gb 256gb",
+        "nameProduct": "Dell Vostro 13\" 8Gb 256gb",
         "brand": "Dell",
         "display": "13",
         "ram": "8",
@@ -230,7 +230,7 @@ export const productsArr = [
         "img": "./assets/images/dell-vostro-8-256.jpg"
     },
     {
-        "name": "Dell XPS 14\" 8Gb 512Gb",
+        "nameProduct": "Dell XPS 14\" 8Gb 512Gb",
         "brand": "Dell",
         "display": "14",
         "ram": "8",
@@ -242,7 +242,7 @@ export const productsArr = [
         "img": "./assets/images/dell-latitude-16-512.jpg"
     },
     {
-        "name": "Dell Vostro 13\" 8Gb 512gb",
+        "nameProduct": "Dell Vostro 13\" 8Gb 512gb",
         "brand": "Dell",
         "display": "13",
         "ram": "8",

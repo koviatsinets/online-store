@@ -5,19 +5,19 @@ import { brandBlock, displayBlock, ramBlock, storageBlock, colorBlock } from '..
 
 
 function openBrand() {
-    brandBlock.classList.toggle('brand-block-open');
+    (brandBlock as HTMLElement).classList.toggle('brand-block-open');
 }
 function openDisplay() {
-    displayBlock.classList.toggle('display-block-open');
+    (displayBlock as HTMLElement).classList.toggle('display-block-open');
 }
 function openRam() {
-    ramBlock.classList.toggle('ram-block-open');
+    (ramBlock as HTMLElement).classList.toggle('ram-block-open');
 }
 function openStorage() {
-    storageBlock.classList.toggle('storage-block-open');
+    (storageBlock as HTMLElement).classList.toggle('storage-block-open');
 }
 function openColor() {
-    colorBlock.classList.toggle('color-block-open');
+    (colorBlock as HTMLElement).classList.toggle('color-block-open');
 }
 
 export { openBrand, openDisplay, openRam, openStorage, openColor };
