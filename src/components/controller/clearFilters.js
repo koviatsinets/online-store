@@ -3,6 +3,7 @@ import filterArrProducts from './filterProducts';
 import updateLocaleStorage from '../app/localeStoragePush';
 import { controlFromSlider, controlToSlider } from './sliderPrice';
 import { controlFromSliderAmount, controlToSliderAmount } from './sliderAmount';
+import { fromSlider, toSlider, fromSliderAmount, toSliderAmount } from '../../index';
 
 
 // ------------------ Кнопка "очистить" ------------------ //

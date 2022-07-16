@@ -16,6 +16,7 @@ import { controlFromSlider, controlToSlider } from './components/controller/slid
 import { controlFromSliderAmount, controlToSliderAmount, fillSliderAmount, setToggleAccessibleAmount } from './components/controller/sliderAmount';
 import { fillSlider, setToggleAccessible} from './components/controller/sliderPrice';
 export { showPriceFrom, showPriceTo, showPriceFromAmount, showPriceToAmount };
+export { fromSlider, toSlider, fromSliderAmount, toSliderAmount };
 import './components/app/dataLocaleStorage'
 import './global.css';
 
