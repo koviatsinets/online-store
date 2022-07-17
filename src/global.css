@@ -369,6 +369,19 @@ section {
     cursor: pointer;
 }
 
+.clear-ls {
+    margin-top: 20px;
+    width: 160px;
+    height: 30px;
+    font-size: 16px;
+    color: rgb(40, 40, 40);
+    cursor: pointer;
+}
+
+.clear-ls:hover {
+    color: rgb(203, 0, 0);
+}
+
 .clear:hover {
     color: rgb(203, 0, 0);
 }

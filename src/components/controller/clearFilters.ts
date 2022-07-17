@@ -6,7 +6,7 @@ import { controlFromSliderAmount, controlToSliderAmount } from "./sliderAmount";
 import { fromSlider, toSlider, fromSliderAmount, toSliderAmount } from "../../index";
 
 
-// ------------------ Кнопка "очистить" ------------------ //
+// ------------------ Кнопка "Очистить фильтры" ------------------ //
 
 export default function clearCheckbox() {
     checkBoxList.forEach(el => {
